@@ -28,17 +28,68 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 		[
 			'label'              => __( 'Position', 'jet-woo-builder' ),
 			'type'               => Elementor\Controls_Manager::SELECT,
-			'label_block'        => true,
 			'default'            => 'horizontal',
 			'options'            => [
 				'horizontal' => __( 'Horizontal', 'jet-woo-builder' ),
 				'vertical'   => __( 'Vertical', 'jet-woo-builder' ),
 				'start'      => __( 'Start', 'jet-woo-builder' ),
 				'end'        => __( 'End', 'jet-woo-builder' ),
+				'top'        => __( 'Top', 'jet-woo-builder' ),
+				'bottom'     => __( 'Bottom', 'jet-woo-builder' ),
 			],
 			'frontend_available' => true,
 			'condition'          => [
 				'enable_custom_quantity_selector' => 'yes',
+			],
+		]
+	);
+
+	$obj->add_control(
+		'quantity_buttons_wrapper_width',
+		[
+			'label'      => __( 'Wrapper Width', 'jet-woo-builder' ),
+			'type'       => Elementor\Controls_Manager::SLIDER,
+			'size_units' => [ '%' ],
+			'range'      => [
+				'%' => [
+					'min' => 10,
+					'max' => 100,
+				],
+			],
+			'default'    => [
+				'unit' => '%',
+				'size' => '30',
+			],
+			'selectors'  => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder' => 'flex: 0 0 {{SIZE}}{{UNIT}}',
+			],
+			'condition'  => [
+				'quantity_buttons_position' => [ 'start', 'end' ],
+			],
+		]
+	);
+
+	$obj->add_control(
+		'quantity_buttons_width',
+		[
+			'label'      => __( 'Buttons Width', 'jet-woo-builder' ),
+			'type'       => Elementor\Controls_Manager::SLIDER,
+			'size_units' => [ '%' ],
+			'range'      => [
+				'%' => [
+					'min' => 10,
+					'max' => 100,
+				],
+			],
+			'default'    => [
+				'unit' => '%',
+				'size' => '20',
+			],
+			'selectors'  => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control' => 'flex: 0 0 {{SIZE}}{{UNIT}}',
+			],
+			'condition'  => [
+				'quantity_buttons_position' => [ 'horizontal' ],
 			],
 		]
 	);

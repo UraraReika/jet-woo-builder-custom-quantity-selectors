@@ -1,0 +1,27 @@
+{
+  "name": "jet-woo-builder-custom-quantity-selectors",
+  "version": "1.0.0",
+  "description": "Add possibility of having a different selection for adding quantities of product.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UraraReika/jet-woo-builder-custom-quantity-selectors.git"
+  },
+  "author": "UraraReika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UraraReika/jet-woo-builder-custom-quantity-selectors/issues"
+  },
+  "homepage": "https://github.com/UraraReika/jet-woo-builder-custom-quantity-selectors#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2"
+  }
+}

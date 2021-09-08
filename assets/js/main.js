@@ -42,10 +42,24 @@
 					if ( $quantityBox && 'date' !== $quantityBox.attr( 'type' ) && 'hidden' !== $quantityBox.attr( 'type' ) ) {
 						let $quantityParent = $quantityBox.parent();
 
-						$quantityParent.addClass( 'jet-woo-quantity-button-added' );
+						$quantityParent.addClass( 'jet-woo-quantity-button-added direction-' + settings.quantity_buttons_position );
 
-						$quantityParent.prepend( '<a href="javascript:void(0)" class="jet-woo-qty-control decrease">' + decreaseHtml + '</a>' );
-						$quantityParent.append( '<a href="javascript:void(0)" class="jet-woo-qty-control increase">' + increaseHtml + '</a>' );
+						switch ( settings.quantity_buttons_position ) {
+							case 'horizontal':
+							case 'vertical':
+								$quantityParent.prepend( '<a href="javascript:void(0)" class="jet-woo-qty-control decrease">' + decreaseHtml + '</a>' );
+								$quantityParent.append( '<a href="javascript:void(0)" class="jet-woo-qty-control increase">' + increaseHtml + '</a>' );
+
+								break;
+							case 'start':
+							case 'top':
+								$quantityParent.prepend( '<div class="jet-woo-qty-controls-holder"><a href="javascript:void(0)" class="jet-woo-qty-control increase">' + increaseHtml + '</a><a href="javascript:void(0)" class="jet-woo-qty-control decrease">' + decreaseHtml + '</a></div>');
+								break;
+							case 'end':
+							case 'bottom':
+								$quantityParent.append( '<div class="jet-woo-qty-controls-holder"><a href="javascript:void(0)" class="jet-woo-qty-control increase">' + increaseHtml + '</a><a href="javascript:void(0)" class="jet-woo-qty-control decrease">' + decreaseHtml + '</a></div>');
+								break;
+						}
 
 						let $min = $quantityBox.attr( 'min' );
 
@@ -82,7 +96,7 @@
 
 								let dataQuantity = $( e.target ).parents( 'form.cart' ).find( 'button[ data-quantity ]' );
 
-								if ( $( e.target ).parent().hasClass( 'increase' ) ) {
+								if ( $( e.target ).parent().hasClass( 'increase' ) || $( e.target ).hasClass( 'increase' ) ) {
 									if ( $maxQuantity && ( $maxQuantity === $currentQuantityValue || $currentQuantityValue > $maxQuantity ) ) {
 										$quantityBox.val( $maxQuantity );
 									} else {

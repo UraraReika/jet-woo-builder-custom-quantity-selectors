@@ -1,0 +1,61 @@
+.jet-woo-quantity-button-added {
+	display: inline-flex !important;
+
+	&.direction-vertical {
+		flex-direction: column-reverse;
+	}
+
+	&.direction-vertical,
+	&.direction-horizontal {
+		.jet-woo-qty-control {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+
+	&.direction-top,
+	&.direction-bottom {
+		flex-direction: column;
+
+		.jet-woo-qty-controls-holder {
+			flex-direction: row-reverse;
+
+			> * {
+				max-width: 50%;
+			}
+		}
+	}
+
+	&.direction-start,
+	&.direction-end {
+		.jet-woo-qty-controls-holder {
+			flex-direction: column;
+
+			> * {
+				max-width: 100%;
+			}
+		}
+	}
+
+	.jet-woo-qty-controls-holder {
+		display: flex;
+
+		> * {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex: 0 0 50%;
+		}
+	}
+
+	input.qty::-webkit-outer-spin-button,
+	input.qty::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type=number].qty {
+		-moz-appearance: textfield;
+	}
+}

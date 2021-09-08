@@ -16,3 +16,14 @@ function cqs_enqueue_scripts() {
 	wp_enqueue_script( 'cqs_main' );
 
 }
+
+/**
+ * Enqueue main style file.
+ */
+function cqs_enqueue_styles() {
+
+	wp_register_style( 'cqs_styles', plugins_url( 'assets/css/styles.min.css', CQS_PLUGIN_URL ) );
+
+	wp_enqueue_style( 'cqs_styles' );
+
+}

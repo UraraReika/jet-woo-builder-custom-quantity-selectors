@@ -2,7 +2,7 @@
 /**
  * Plugin Name: JetWooBuilder - Custom Quantity Selector
  * Plugin URI: https://github.com/UraraReika/jet-woo-builder-custom-quantity-selectors
- * Description: Add possibility of having a different selection for adding quantities of product
+ * Description: Add possibility of having a different selection for adding quantities of product.
  * Version:     1.0.0
  * Author:      Crocoblock
  * Author URI:  https://crocoblock.com/
@@ -25,5 +25,7 @@ include( 'includes/cqs-elementor-controls.php' );
 
 // Hooks
 add_action( 'elementor/frontend/before_enqueue_scripts', 'cqs_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'cqs_enqueue_styles', 100 );
+
 add_action( 'elementor/element/jet-woo-products/section_general/after_section_end', 'cqs_register_custom_quantity_selector_content_controls', 999 );
 add_action( 'elementor/element/jet-single-add-to-cart/section_add_to_cart_style/before_section_start', 'cqs_register_custom_quantity_selector_content_controls', 999 );
