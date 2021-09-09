@@ -6,7 +6,9 @@
 		init: function () {
 			let widgets = {
 				'jet-woo-products.default' : JetWooBuilderCQS.quantitySelector,
-				'jet-single-add-to-cart.default' : JetWooBuilderCQS.quantitySelector
+				'jet-single-add-to-cart.default' : JetWooBuilderCQS.quantitySelector,
+				'jet-woo-products-list.default' : JetWooBuilderCQS.quantitySelector,
+				'jet-woo-builder-archive-add-to-cart.default' : JetWooBuilderCQS.quantitySelector
 			};
 
 			$.each( widgets, function( widget, callback ) {

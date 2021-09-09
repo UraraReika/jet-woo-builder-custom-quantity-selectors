@@ -19,13 +19,16 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit;
 }
 
-// Includes
+// Include files
 include( 'includes/cqs-enqueue.php' );
 include( 'includes/cqs-elementor-controls.php' );
 
-// Hooks
+// Enqueue styles and scripts.
 add_action( 'elementor/frontend/before_enqueue_scripts', 'cqs_enqueue_scripts' );
-add_action( 'wp_enqueue_scripts', 'cqs_enqueue_styles', 100 );
+add_action( 'wp_enqueue_scripts', 'cqs_enqueue_styles' );
 
+// Register content controls in widgets.
 add_action( 'elementor/element/jet-woo-products/section_general/after_section_end', 'cqs_register_custom_quantity_selector_content_controls', 999 );
+add_action( 'elementor/element/jet-woo-products-list/section_general/after_section_end', 'cqs_register_custom_quantity_selector_content_controls', 999 );
 add_action( 'elementor/element/jet-single-add-to-cart/section_add_to_cart_style/before_section_start', 'cqs_register_custom_quantity_selector_content_controls', 999 );
+add_action( 'elementor/element/jet-woo-builder-archive-add-to-cart/section_archive_add_to_cart_content/after_section_end', 'cqs_register_custom_quantity_selector_content_controls', 999 );

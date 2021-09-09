@@ -64,7 +64,8 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder' => 'flex: 0 0 {{SIZE}}{{UNIT}}',
 			],
 			'condition'  => [
-				'quantity_buttons_position' => [ 'start', 'end' ],
+				'enable_custom_quantity_selector' => 'yes',
+				'quantity_buttons_position'       => [ 'start', 'end' ],
 			],
 		]
 	);
@@ -89,7 +90,8 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control' => 'flex: 0 0 {{SIZE}}{{UNIT}}',
 			],
 			'condition'  => [
-				'quantity_buttons_position' => [ 'horizontal' ],
+				'enable_custom_quantity_selector' => 'yes',
+				'quantity_buttons_position'       => [ 'horizontal' ],
 			],
 		]
 	);
