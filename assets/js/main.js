@@ -14,6 +14,8 @@
 			$.each( widgets, function( widget, callback ) {
 				elementorFrontend.hooks.addAction( 'frontend/element_ready/' + widget, callback );
 			});
+
+			$( document ).on( 'jet-filter-content-rendered', JetWooBuilderCQS.reInitQuantitySelector );
 		},
 
 		quantitySelector: function ( $scope ) {
@@ -122,6 +124,10 @@
 					}
 				} );
 			}
+		},
+
+		reInitQuantitySelector: function ( _, provider ) {
+			JetWooBuilderCQS.quantitySelector( provider.closest( '.elementor-element' ) );
 		}
 	};
 
