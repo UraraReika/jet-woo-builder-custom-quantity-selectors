@@ -29,13 +29,13 @@
 					decreaseHtml = '';
 
 				if ( 'object' === typeof increaseControl ) {
-					increaseHtml = '<img src="' + increaseControl.url + '" alt="increase icon">';
+					increaseHtml = '<img class="icon-svg" src="' + increaseControl.url + '" alt="increase icon">';
 				} else {
 					increaseHtml = '<i class="' + increaseControl + '"></i>';
 				}
 
 				if ( 'object' === typeof decreaseControl ) {
-					decreaseHtml = '<img src="' + decreaseControl.url + '" alt="decrease icon">';
+					decreaseHtml = '<img class="icon-svg" src="' + decreaseControl.url + '" alt="decrease icon">';
 				} else {
 					decreaseHtml = '<i class="' + decreaseControl + '"></i>';
 				}
@@ -64,6 +64,18 @@
 								$quantityParent.append( '<div class="jet-woo-qty-controls-holder"><a href="javascript:void(0)" class="jet-woo-qty-control increase">' + increaseHtml + '</a><a href="javascript:void(0)" class="jet-woo-qty-control decrease">' + decreaseHtml + '</a></div>');
 								break;
 						}
+
+						$( this ).find( '.icon-svg' ).each( function() {
+							let img = $( this ),
+								image_uri   = img.attr( 'src' );
+
+							$.get( image_uri, function( data ) {
+								let svg = $( data ).find( 'svg' );
+
+								svg.removeAttr( 'xmlns:a' );
+								img.replaceWith( svg );
+							}, 'xml' );
+						} );
 
 						let $min = $quantityBox.attr( 'min' );
 

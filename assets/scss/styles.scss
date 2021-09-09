@@ -49,11 +49,13 @@
 		}
 	}
 
-	.jet-woo-qty-control i {
-		width: 1em;
-		height: 1em;
-		position: relative;
-		display: block;
+	.jet-woo-qty-control {
+		i, svg {
+			width: 1em;
+			height: 1em;
+			position: relative;
+			display: block;
+		}
 	}
 
 	input.qty::-webkit-outer-spin-button,

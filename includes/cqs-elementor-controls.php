@@ -168,7 +168,7 @@ function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 				],
 			],
 			'selectors' => [
-				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control > *' => 'font-size: {{SIZE}}{{UNIT}};',
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control' => 'font-size: {{SIZE}}{{UNIT}};',
 			],
 		]
 	);
