@@ -32,3 +32,9 @@ add_action( 'elementor/element/jet-woo-products/section_general/after_section_en
 add_action( 'elementor/element/jet-woo-products-list/section_general/after_section_end', 'cqs_register_custom_quantity_selector_content_controls', 999 );
 add_action( 'elementor/element/jet-single-add-to-cart/section_add_to_cart_style/before_section_start', 'cqs_register_custom_quantity_selector_content_controls', 999 );
 add_action( 'elementor/element/jet-woo-builder-archive-add-to-cart/section_archive_add_to_cart_content/after_section_end', 'cqs_register_custom_quantity_selector_content_controls', 999 );
+
+// Register style controls in widgets.
+add_action( 'elementor/element/jet-woo-products/section_not_found_message_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
+add_action( 'elementor/element/jet-woo-products-list/section_not_found_message_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
+add_action( 'elementor/element/jet-woo-builder-archive-add-to-cart/section_archive_add_to_cart_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
+add_action( 'elementor/element/jet-single-add-to-cart/section_add_to_cart_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );

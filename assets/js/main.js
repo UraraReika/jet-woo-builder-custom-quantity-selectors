@@ -44,7 +44,7 @@
 					if ( $quantityBox && 'date' !== $quantityBox.attr( 'type' ) && 'hidden' !== $quantityBox.attr( 'type' ) ) {
 						let $quantityParent = $quantityBox.parent();
 
-						$quantityParent.addClass( 'jet-woo-quantity-button-added direction-' + settings.quantity_buttons_position );
+						$quantityParent.addClass( 'jet-woo-quantity-button-added position-' + settings.quantity_buttons_position );
 
 						switch ( settings.quantity_buttons_position ) {
 							case 'horizontal':

@@ -137,3 +137,280 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 	$obj->end_controls_section();
 
 }
+
+/**
+ * Register custom quantity selector style controls
+ *
+ * @param $obj
+ */
+function cqs_register_custom_quantity_selector_style_controls( $obj ) {
+
+	$obj->start_controls_section(
+		'section_custom_quantity_selector_styles',
+		[
+			'label'     => __( 'Quantity Selector', 'jet-woo-builder' ),
+			'tab'       => Elementor\Controls_Manager::TAB_STYLE,
+			'condition' => [
+				'enable_custom_quantity_selector' => 'yes',
+			],
+		]
+	);
+
+	$obj->add_responsive_control(
+		'quantity_selector_size',
+		[
+			'label'     => __( 'Size', 'elementor' ),
+			'type'      => Elementor\Controls_Manager::SLIDER,
+			'range'     => [
+				'px' => [
+					'min' => 6,
+					'max' => 300,
+				],
+			],
+			'selectors' => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control > *' => 'font-size: {{SIZE}}{{UNIT}};',
+			],
+		]
+	);
+
+	$obj->start_controls_tabs( 'tabs_quantity_selector_style' );
+
+	$obj->start_controls_tab(
+		'tab_quantity_selector_normal',
+		[
+			'label' => __( 'Normal', 'jet-woo-builder' ),
+		]
+	);
+
+	$obj->add_control(
+		'quantity_selector_icon_color',
+		[
+			'label'     => __( 'Color', 'jet-woo-builder' ),
+			'type'      => Elementor\Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control > *' => 'fill: {{VALUE}}; color: {{VALUE}};',
+			],
+		]
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Background::get_type(),
+		[
+			'name'           => 'quantity_selector_background',
+			'label'          => __( 'Background', 'jet-woo-builder' ),
+			'types'          => [ 'classic', 'gradient' ],
+			'exclude'        => [ 'image' ],
+			'selector'       => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control',
+			'fields_options' => [
+				'background' => [
+					'default' => 'classic',
+				],
+				'color'      => [
+					'global' => [
+						'default' => Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+					],
+				],
+			],
+		]
+	);
+
+	$obj->end_controls_tab();
+
+	$obj->start_controls_tab(
+		'tab_quantity_selector_hover',
+		[
+			'label' => __( 'Hover', 'jet-woo-builder' ),
+		]
+	);
+
+	$obj->add_control(
+		'quantity_selector_icon_hover_color',
+		[
+			'label'     => __( 'Color', 'jet-woo-builder' ),
+			'type'      => Elementor\Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:hover > *' => 'fill: {{VALUE}}; color: {{VALUE}};',
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:focus > *' => 'fill: {{VALUE}}; color: {{VALUE}};',
+			],
+		]
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Background::get_type(),
+		[
+			'name'           => 'quantity_selector_hover_background',
+			'label'          => __( 'Background', 'jet-woo-builder' ),
+			'types'          => [ 'classic', 'gradient' ],
+			'exclude'        => [ 'image' ],
+			'selector'       => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:hover, {{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:focus',
+			'fields_options' => [
+				'background' => [
+					'default' => 'classic',
+				],
+			],
+		]
+	);
+
+	$obj->add_control(
+		'quantity_selector_hover_border_color',
+		[
+			'label'     => __( 'Border Color', 'jet-woo-builder' ),
+			'type'      => Elementor\Controls_Manager::COLOR,
+			'condition' => [
+				'quantity_selector_border_border!' => '',
+			],
+			'selectors' => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:hover' => 'border-color: {{VALUE}};',
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:focus' => 'border-color: {{VALUE}};',
+			],
+		]
+	);
+
+	$obj->end_controls_tab();
+
+	$obj->end_controls_tabs();
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Border::get_type(),
+		[
+			'name'      => 'quantity_selector_border',
+			'selector'  => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control',
+			'separator' => 'before',
+		]
+	);
+
+	$obj->add_control(
+		'quantity_selector_border_radius',
+		[
+			'label'      => __( 'Border Radius', 'jet-woo-builder' ),
+			'type'       => Elementor\Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'px', '%', 'em' ],
+			'selectors'  => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			],
+		]
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Box_Shadow::get_type(),
+		[
+			'name'     => 'quantity_selector_box_shadow',
+			'selector' => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control',
+		]
+	);
+
+	$obj->add_responsive_control(
+		'quantity_selector_padding',
+		[
+			'label'      => __( 'Padding', 'jet-woo-builder' ),
+			'type'       => Elementor\Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'px', 'em', '%' ],
+			'selectors'  => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			],
+		]
+	);
+
+	$obj->add_control(
+		'quantity_selector_wrapper_heading',
+		array(
+			'label'     => esc_html__( 'Quantity Buttons Wrapper', 'jet-woo-builder' ),
+			'type'      => Elementor\Controls_Manager::HEADING,
+			'separator' => 'before',
+			'condition' => [
+				'quantity_buttons_position' => [ 'start', 'end', 'top', 'bottom' ],
+			],
+		)
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Background::get_type(),
+		[
+			'name'           => 'quantity_selector_wrapper_background',
+			'label'          => __( 'Background', 'jet-woo-builder' ),
+			'types'          => [ 'classic', 'gradient' ],
+			'exclude'        => [ 'image' ],
+			'selector'       => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder',
+			'fields_options' => [
+				'background' => [
+					'default' => 'classic',
+				],
+				'color'      => [
+					'global' => [
+						'default' => Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					],
+				],
+			],
+		]
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Border::get_type(),
+		[
+			'name'      => 'quantity_selector_wrapper_border',
+			'condition' => [
+				'quantity_buttons_position' => [ 'start', 'end', 'top', 'bottom' ],
+			],
+			'selector'  => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder',
+		]
+	);
+
+	$obj->add_control(
+		'quantity_selector_wrapper_border_radius',
+		[
+			'label'      => __( 'Border Radius', 'jet-woo-builder' ),
+			'type'       => Elementor\Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'px', '%', 'em' ],
+			'condition'  => [
+				'quantity_buttons_position' => [ 'start', 'end', 'top', 'bottom' ],
+			],
+			'selectors'  => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			],
+		]
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Box_Shadow::get_type(),
+		[
+			'name'      => 'quantity_selector_wrapper_box_shadow',
+			'condition' => [
+				'quantity_buttons_position' => [ 'start', 'end', 'top', 'bottom' ],
+			],
+			'selector'  => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder',
+		]
+	);
+
+	$obj->add_responsive_control(
+		'quantity_selector_wrapper_padding',
+		[
+			'label'      => __( 'Padding', 'jet-woo-builder' ),
+			'type'       => Elementor\Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'px', 'em', '%' ],
+			'condition'  => [
+				'quantity_buttons_position' => [ 'start', 'end', 'top', 'bottom' ],
+			],
+			'selectors'  => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			],
+		]
+	);
+
+	$obj->add_responsive_control(
+		'quantity_selector_wrapper_margin',
+		[
+			'label'      => __( 'Margin', 'jet-woo-builder' ),
+			'type'       => Elementor\Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'px', 'em', '%' ],
+			'condition'  => [
+				'quantity_buttons_position' => [ 'start', 'end', 'top', 'bottom' ],
+			],
+			'selectors'  => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			],
+		]
+	);
+
+	$obj->end_controls_section();
+
+}

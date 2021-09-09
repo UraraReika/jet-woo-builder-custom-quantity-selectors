@@ -1,12 +1,12 @@
 .jet-woo-quantity-button-added {
 	display: inline-flex !important;
 
-	&.direction-vertical {
+	&.position-vertical {
 		flex-direction: column-reverse;
 	}
 
-	&.direction-vertical,
-	&.direction-horizontal {
+	&.position-vertical,
+	&.position-horizontal {
 		.jet-woo-qty-control {
 			display: flex;
 			justify-content: center;
@@ -14,8 +14,8 @@
 		}
 	}
 
-	&.direction-top,
-	&.direction-bottom {
+	&.position-top,
+	&.position-bottom {
 		flex-direction: column;
 
 		.jet-woo-qty-controls-holder {
@@ -27,8 +27,8 @@
 		}
 	}
 
-	&.direction-start,
-	&.direction-end {
+	&.position-start,
+	&.position-end {
 		.jet-woo-qty-controls-holder {
 			flex-direction: column;
 
