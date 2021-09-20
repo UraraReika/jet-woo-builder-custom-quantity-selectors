@@ -22,6 +22,7 @@ if ( ! function_exists( 'add_action' ) ) {
 // Include files
 include( 'includes/cqs-enqueue.php' );
 include( 'includes/cqs-elementor-controls.php' );
+include( 'includes/cqs-editor-view-handler.php' );
 
 // Enqueue styles and scripts.
 add_action( 'elementor/frontend/before_enqueue_scripts', 'cqs_enqueue_scripts' );
@@ -38,3 +39,12 @@ add_action( 'elementor/element/jet-woo-products/section_not_found_message_style/
 add_action( 'elementor/element/jet-woo-products-list/section_not_found_message_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
 add_action( 'elementor/element/jet-woo-builder-archive-add-to-cart/section_archive_add_to_cart_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
 add_action( 'elementor/element/jet-single-add-to-cart/section_add_to_cart_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
+
+// Editor integration.
+add_filter( 'jet-woo-builder/templates/jet-woo-products/widget-attributes', 'cqs_set_product_add_to_cart_button_editor_attributes', 999, 2 );
+add_filter( 'jet-woo-builder/templates/jet-woo-products-list/widget-attributes', 'cqs_set_product_add_to_cart_button_editor_attributes', 999, 2 );
+add_filter( 'jet-woo-builder/jet-woo-archive-add-to-cart/widget-attributes', 'cqs_set_product_add_to_cart_button_editor_attributes', 999, 2 );
+add_filter( 'jet-woo-builder/jet-single-add-to-cart/widget-attributes', 'cqs_set_product_add_to_cart_button_editor_attributes', 999, 2 );
+
+// Add plugin settings to archive widget marcos settings.
+add_filter( 'jet-woo-builder/jet-woo-archive-add-to-cart/macros-settings', 'cqs_set_archive_add_to_cart_macros_settings', 10, 2 );

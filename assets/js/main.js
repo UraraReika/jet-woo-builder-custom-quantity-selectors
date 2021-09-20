@@ -19,14 +19,26 @@
 		},
 
 		quantitySelector: function ( $scope ) {
-			let settings = $scope.data( 'settings' );
+			let settings = $scope.data( 'settings' ),
+				editorSettings = $scope.find( '.jet-woo-products, .jet-woo-products-list, .jet-woo-builder-archive-add-to-cart, .jet-woo-builder-single-ajax-add-to-cart' ).data( 'editor-quantity-settings' );
 
-			if ( settings && settings.enable_custom_quantity_selector ) {
+			if ( ( settings && settings.enable_custom_quantity_selector ) || ( editorSettings && editorSettings.enable ) ) {
 				let $quantityWrap = $scope.find( '.quantity:not(.buttons_added)' ),
-					increaseControl = settings.selected_quantity_increase_button_icon.value,
-					decreaseControl = settings.selected_quantity_decrease_button_icon.value,
+					increaseControl = '',
+					decreaseControl = '',
+					controlsPosition = '',
 					increaseHtml = '',
 					decreaseHtml = '';
+
+				if ( window.elementorFrontend.isEditMode() && settings || ! window.elementorFrontend.isEditMode() ) {
+					increaseControl = settings.selected_quantity_increase_button_icon.value;
+					decreaseControl = settings.selected_quantity_decrease_button_icon.value;
+					controlsPosition = settings.quantity_buttons_position;
+				} else if ( window.elementorFrontend.isEditMode() ) {
+					increaseControl = editorSettings.incIcon.value;
+					decreaseControl = editorSettings.decIcon.value;
+					controlsPosition = editorSettings.position;
+				}
 
 				if ( 'object' === typeof increaseControl ) {
 					increaseHtml = '<img class="icon-svg" src="' + increaseControl.url + '" alt="increase icon">';
@@ -46,9 +58,9 @@
 					if ( $quantityBox && 'date' !== $quantityBox.attr( 'type' ) && 'hidden' !== $quantityBox.attr( 'type' ) ) {
 						let $quantityParent = $quantityBox.parent();
 
-						$quantityParent.addClass( 'jet-woo-quantity-button-added position-' + settings.quantity_buttons_position );
+						$quantityParent.addClass( 'jet-woo-quantity-button-added position-' + controlsPosition );
 
-						switch ( settings.quantity_buttons_position ) {
+						switch ( controlsPosition ) {
 							case 'horizontal':
 							case 'vertical':
 								$quantityParent.prepend( '<a href="javascript:void(0)" class="jet-woo-qty-control decrease">' + decreaseHtml + '</a>' );

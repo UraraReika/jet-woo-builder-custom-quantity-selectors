@@ -139,7 +139,7 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 }
 
 /**
- * Register custom quantity selector style controls
+ * Register custom quantity selector style controls.
  *
  * @param $obj
  */
@@ -331,6 +331,9 @@ function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 			'types'          => [ 'classic', 'gradient' ],
 			'exclude'        => [ 'image' ],
 			'selector'       => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder',
+			'condition'      => [
+				'quantity_buttons_position' => [ 'start', 'end', 'top', 'bottom' ],
+			],
 			'fields_options' => [
 				'background' => [
 					'default' => 'classic',
