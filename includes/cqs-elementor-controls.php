@@ -7,12 +7,24 @@
  */
 function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 
-	$obj->start_controls_section(
-		'section_custom_quantity_selector',
-		[
-			'label' => __( 'Quantity Selector', 'jet-woo-builder' ),
-		]
-	);
+	if ( 'jet-single-add-to-cart' === $obj->get_name() ) {
+		$obj->start_controls_section(
+			'section_custom_quantity_selector',
+			[
+				'label' => __( 'Quantity Selector', 'jet-woo-builder' ),
+			]
+		);
+	} else {
+		$obj->start_controls_section(
+			'section_custom_quantity_selector',
+			[
+				'label'     => __( 'Quantity Selector', 'jet-woo-builder' ),
+				'condition' => [
+					'show_quantity' => 'yes',
+				],
+			]
+		);
+	}
 
 	$obj->add_control(
 		'enable_custom_quantity_selector',
@@ -47,7 +59,7 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 	$obj->add_control(
 		'quantity_buttons_wrapper_width',
 		[
-			'label'      => __( 'Wrapper Width', 'jet-woo-builder' ),
+			'label'      => __( 'Wrapper Width (%)', 'jet-woo-builder' ),
 			'type'       => Elementor\Controls_Manager::SLIDER,
 			'size_units' => [ '%' ],
 			'range'      => [
@@ -73,7 +85,7 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 	$obj->add_control(
 		'quantity_buttons_width',
 		[
-			'label'      => __( 'Buttons Width', 'jet-woo-builder' ),
+			'label'      => __( 'Buttons Width (%)', 'jet-woo-builder' ),
 			'type'       => Elementor\Controls_Manager::SLIDER,
 			'size_units' => [ '%' ],
 			'range'      => [
