@@ -16,6 +16,7 @@
 			});
 
 			$( document ).on( 'jet-filter-content-rendered', JetWooBuilderCQS.reInitQuantitySelector );
+			$( document ).on( 'jet-load-more-content-rendered', JetWooBuilderCQS.reInitQuantitySelector );
 		},
 
 		quantitySelector: function ( $scope ) {
