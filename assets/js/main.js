@@ -20,26 +20,15 @@
 		},
 
 		quantitySelector: function ( $scope ) {
-			let settings = $scope.data( 'settings' ),
-				editorSettings = $scope.find( '.jet-woo-products, .jet-woo-products-list, .jet-woo-builder-archive-add-to-cart, .jet-woo-builder-single-ajax-add-to-cart' ).data( 'editor-quantity-settings' );
+			let settings = JetWooBuilderCQS.getElementorElementSettings( $scope );
 
-			if ( ( settings && settings.enable_custom_quantity_selector ) || ( editorSettings && editorSettings.enable ) ) {
+			if ( settings && settings.enable_custom_quantity_selector ) {
 				let $quantityWrap = $scope.find( '.quantity:not(.buttons_added)' ),
-					increaseControl = '',
-					decreaseControl = '',
-					controlsPosition = '',
+					increaseControl = settings.selected_quantity_increase_button_icon.value,
+					decreaseControl = settings.selected_quantity_decrease_button_icon.value,
+					controlsPosition = settings.quantity_buttons_position,
 					increaseHtml = '',
 					decreaseHtml = '';
-
-				if ( window.elementorFrontend.isEditMode() && settings || ! window.elementorFrontend.isEditMode() ) {
-					increaseControl = settings.selected_quantity_increase_button_icon.value;
-					decreaseControl = settings.selected_quantity_decrease_button_icon.value;
-					controlsPosition = settings.quantity_buttons_position;
-				} else if ( window.elementorFrontend.isEditMode() ) {
-					increaseControl = editorSettings.incIcon.value;
-					decreaseControl = editorSettings.decIcon.value;
-					controlsPosition = editorSettings.position;
-				}
 
 				if ( 'object' === typeof increaseControl ) {
 					increaseHtml = '<img class="icon-svg" src="' + increaseControl.url + '" alt="increase icon">';
@@ -149,6 +138,47 @@
 					}
 				} );
 			}
+		},
+
+		getElementorElementSettings: function( $scope ) {
+
+			if ( window.elementorFrontend && window.elementorFrontend.isEditMode() ) {
+				return JetWooBuilderCQS.getEditorElementSettings( $scope );
+			}
+
+			return $scope.data( 'settings' ) || {};
+
+		},
+
+		getEditorElementSettings: function( $scope ) {
+
+			var modelCID = $scope.data( 'model-cid' ),
+				elementData;
+
+			if ( ! modelCID ) {
+				return {};
+			}
+
+			if ( ! window.elementorFrontend.hasOwnProperty( 'config' ) ) {
+				return {};
+			}
+
+			if ( ! window.elementorFrontend.config.hasOwnProperty( 'elements' ) ) {
+				return {};
+			}
+
+			if ( ! window.elementorFrontend.config.elements.hasOwnProperty( 'data' ) ) {
+				return {};
+			}
+
+			elementData = window.elementorFrontend.config.elements.data[ modelCID ];
+
+			if ( ! elementData ) {
+				return {};
+			}
+
+			return elementData.toJSON();
+
 		},
 
 		reInitQuantitySelector: function ( _, provider ) {
