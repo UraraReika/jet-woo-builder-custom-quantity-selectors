@@ -94,7 +94,7 @@
 								let $currentQuantityValue = $quantityBox.val(),
 									$maxQuantity = $quantityBox.attr( 'max' ),
 									$minQuantity = $quantityBox.attr( 'min' ),
-									$step = $quantityBox.attr( 'step ');
+									$step = $quantityBox.attr( 'step' );
 
 								if ( ! $currentQuantityValue || '' === $currentQuantityValue || 'NaN' === $currentQuantityValue ) {
 									$currentQuantityValue = 0;
@@ -115,7 +115,7 @@
 								let dataQuantity = $( e.target ).parents( 'form.cart' ).find( 'button[ data-quantity ]' );
 
 								if ( $( e.target ).parent().hasClass( 'increase' ) || $( e.target ).hasClass( 'increase' ) ) {
-									if ( $maxQuantity && ( $maxQuantity === $currentQuantityValue || $currentQuantityValue > $maxQuantity ) ) {
+									if ( +$maxQuantity && ( +$maxQuantity === +$currentQuantityValue || +$currentQuantityValue > +$maxQuantity ) ) {
 										$quantityBox.val( $maxQuantity );
 									} else {
 										let increaseValue = parseFloat( $currentQuantityValue ) + parseFloat( $step );
@@ -124,7 +124,7 @@
 										dataQuantity.attr( 'data-quantity', increaseValue );
 									}
 								} else {
-									if ( $minQuantity && ( $minQuantity === $currentQuantityValue || $currentQuantityValue < $minQuantity ) ) {
+									if ( +$minQuantity && ( +$minQuantity === +$currentQuantityValue || +$currentQuantityValue < +$minQuantity ) ) {
 										$quantityBox.val( $minQuantity );
 									} else if ( $currentQuantityValue > 0 ) {
 										let decreaseValue = parseFloat( $currentQuantityValue ) - parseFloat( $step );
