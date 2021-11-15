@@ -7,7 +7,7 @@
  */
 function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 
-	if ( 'jet-single-add-to-cart' === $obj->get_name() ) {
+	if ( 'jet-single-add-to-cart' === $obj->get_name() || 'jet-cart-table' === $obj->get_name() ) {
 		$obj->start_controls_section(
 			'section_custom_quantity_selector',
 			[

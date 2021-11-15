@@ -12,12 +12,12 @@
  * Domain Path: /languages
  */
 
-define( 'CQS_PLUGIN_URL', __FILE__ );
-
 if ( ! function_exists( 'add_action' ) ) {
 	echo 'Hi there! I\'m just a plugin!';
 	exit;
 }
+
+define( 'CQS_PLUGIN_URL', __FILE__ );
 
 // Include files
 include( 'includes/cqs-enqueue.php' );
@@ -33,12 +33,14 @@ add_action( 'elementor/element/jet-woo-products/section_general/after_section_en
 add_action( 'elementor/element/jet-woo-products-list/section_general/after_section_end', 'cqs_register_custom_quantity_selector_content_controls', 999 );
 add_action( 'elementor/element/jet-single-add-to-cart/section_add_to_cart_style/before_section_start', 'cqs_register_custom_quantity_selector_content_controls', 999 );
 add_action( 'elementor/element/jet-woo-builder-archive-add-to-cart/section_archive_add_to_cart_content/after_section_end', 'cqs_register_custom_quantity_selector_content_controls', 999 );
+add_action( 'elementor/element/jet-cart-table/cart_table_action_controls/after_section_end', 'cqs_register_custom_quantity_selector_content_controls', 999 );
 
 // Register style controls in widgets.
 add_action( 'elementor/element/jet-woo-products/section_not_found_message_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
 add_action( 'elementor/element/jet-woo-products-list/section_not_found_message_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
-add_action( 'elementor/element/jet-woo-builder-archive-add-to-cart/section_archive_add_to_cart_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
 add_action( 'elementor/element/jet-single-add-to-cart/section_add_to_cart_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
+add_action( 'elementor/element/jet-woo-builder-archive-add-to-cart/section_archive_add_to_cart_style/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
+add_action( 'elementor/element/jet-cart-table/cart_table_apply_coupon_styles/after_section_end', 'cqs_register_custom_quantity_selector_style_controls', 999 );
 
 // Add plugin settings to archive widget marcos settings.
 add_filter( 'jet-woo-builder/jet-woo-archive-add-to-cart/macros-settings', 'cqs_set_archive_add_to_cart_macros_settings', 10, 2 );

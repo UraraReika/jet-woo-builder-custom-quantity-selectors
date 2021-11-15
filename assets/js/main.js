@@ -8,22 +8,32 @@
 				'jet-woo-products.default' : JetWooBuilderCQS.quantitySelector,
 				'jet-single-add-to-cart.default' : JetWooBuilderCQS.quantitySelector,
 				'jet-woo-products-list.default' : JetWooBuilderCQS.quantitySelector,
-				'jet-woo-builder-archive-add-to-cart.default' : JetWooBuilderCQS.quantitySelector
+				'jet-woo-builder-archive-add-to-cart.default' : JetWooBuilderCQS.quantitySelector,
+				'jet-cart-table.default' : JetWooBuilderCQS.quantitySelector
 			};
 
 			$.each( widgets, function( widget, callback ) {
 				elementorFrontend.hooks.addAction( 'frontend/element_ready/' + widget, callback );
 			});
 
-			$( document ).on( 'jet-filter-content-rendered', JetWooBuilderCQS.reInitQuantitySelector );
-			$( document ).on( 'jet-load-more-content-rendered', JetWooBuilderCQS.reInitQuantitySelector );
+			( function() {
+				let send = XMLHttpRequest.prototype.send
+				XMLHttpRequest.prototype.send = function() {
+					this.addEventListener( 'load', function() {
+						JetWooBuilderCQS.reInitQuantitySelector( '.quantity:not(.jet-woo-quantity-button-added)' );
+					} )
+
+					return send.apply(this, arguments)
+				}
+			} )();
+
 		},
 
 		quantitySelector: function ( $scope ) {
 			let settings = JetWooBuilderCQS.getElementorElementSettings( $scope );
 
 			if ( settings && settings.enable_custom_quantity_selector ) {
-				let $quantityWrap = $scope.find( '.quantity:not(.buttons_added)' ),
+				let $quantityWrap = $scope.find( '.quantity:not(.jet-woo-quantity-button-added)' ),
 					increaseControl = settings.selected_quantity_increase_button_icon.value,
 					decreaseControl = settings.selected_quantity_decrease_button_icon.value,
 					controlsPosition = settings.quantity_buttons_position,
@@ -112,27 +122,22 @@
 									$step = 1;
 								}
 
-								let dataQuantity = $( e.target ).parents( 'form.cart' ).find( 'button[ data-quantity ]' );
-
 								if ( $( e.target ).parent().hasClass( 'increase' ) || $( e.target ).hasClass( 'increase' ) ) {
 									if ( +$maxQuantity && ( +$maxQuantity === +$currentQuantityValue || +$currentQuantityValue > +$maxQuantity ) ) {
 										$quantityBox.val( $maxQuantity );
 									} else {
-										let increaseValue = parseFloat( $currentQuantityValue ) + parseFloat( $step );
-
-										$quantityBox.val( increaseValue );
-										dataQuantity.attr( 'data-quantity', increaseValue );
+										$quantityBox.val( parseFloat( $currentQuantityValue ) + parseFloat( $step ) );
 									}
 								} else {
 									if ( +$minQuantity && ( +$minQuantity === +$currentQuantityValue || +$currentQuantityValue < +$minQuantity ) ) {
 										$quantityBox.val( $minQuantity );
 									} else if ( $currentQuantityValue > 0 ) {
-										let decreaseValue = parseFloat( $currentQuantityValue ) - parseFloat( $step );
-
-										$quantityBox.val( decreaseValue );
-										dataQuantity.attr( 'data-quantity', decreaseValue );
+										$quantityBox.val( parseFloat( $currentQuantityValue ) - parseFloat( $step ) );
 									}
 								}
+
+								// Trigger change event.
+								$quantityBox.trigger( 'change' );
 							} );
 						} );
 					}
@@ -181,8 +186,8 @@
 
 		},
 
-		reInitQuantitySelector: function ( _, provider ) {
-			JetWooBuilderCQS.quantitySelector( provider.closest( '.elementor-element' ) );
+		reInitQuantitySelector: function ( element ) {
+			JetWooBuilderCQS.quantitySelector( $( element ).closest( '.elementor-element' ) );
 		}
 	};
 
