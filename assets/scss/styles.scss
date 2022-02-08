@@ -5,6 +5,10 @@
 		flex-direction: column-reverse;
 	}
 
+	&.position-horizontal {
+		justify-content: center;
+	}
+
 	&.position-vertical,
 	&.position-horizontal {
 		.jet-woo-qty-control {
