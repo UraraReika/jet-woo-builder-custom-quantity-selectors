@@ -33,6 +33,8 @@
 
 	&.position-start,
 	&.position-end {
+		justify-content: center;
+
 		.jet-woo-qty-controls-holder {
 			flex-direction: column;
 
