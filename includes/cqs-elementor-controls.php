@@ -157,16 +157,30 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
  */
 function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 
-	$obj->start_controls_section(
-		'section_custom_quantity_selector_styles',
-		[
-			'label'     => __( 'Quantity Selector', 'jet-woo-builder' ),
-			'tab'       => Elementor\Controls_Manager::TAB_STYLE,
-			'condition' => [
-				'enable_custom_quantity_selector' => 'yes',
-			],
-		]
-	);
+	if ( 'jet-single-add-to-cart' === $obj->get_name() || 'jet-cart-table' === $obj->get_name() ) {
+		$obj->start_controls_section(
+			'section_custom_quantity_selector_styles',
+			[
+				'label'     => __( 'Quantity Selector', 'jet-woo-builder' ),
+				'tab'       => Elementor\Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'enable_custom_quantity_selector' => 'yes',
+				],
+			]
+		);
+	} else {
+		$obj->start_controls_section(
+			'section_custom_quantity_selector_styles',
+			[
+				'label'     => __( 'Quantity Selector', 'jet-woo-builder' ),
+				'tab'       => Elementor\Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'show_quantity' => 'yes',
+					'enable_custom_quantity_selector' => 'yes',
+				],
+			]
+		);
+	}
 
 	$obj->add_responsive_control(
 		'quantity_selector_size',
