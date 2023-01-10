@@ -44,3 +44,8 @@ add_action( 'elementor/element/jet-cart-table/cart_table_apply_coupon_styles/aft
 
 // Add plugin settings to archive widget marcos settings.
 add_filter( 'jet-woo-builder/jet-woo-archive-add-to-cart/macros-settings', 'cqs_set_archive_add_to_cart_macros_settings', 10, 2 );
+
+// Compatibility with similar option in Astra theme.
+add_filter( 'astra_add_to_cart_quantity_btn_enabled', function() {
+	return false;
+} );
