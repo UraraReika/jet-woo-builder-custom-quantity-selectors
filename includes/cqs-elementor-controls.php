@@ -175,7 +175,7 @@ function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 				'label'     => __( 'Quantity Selector', 'jet-woo-builder' ),
 				'tab'       => Elementor\Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'show_quantity' => 'yes',
+					'show_quantity'                   => 'yes',
 					'enable_custom_quantity_selector' => 'yes',
 				],
 			]
@@ -183,10 +183,50 @@ function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 	}
 
 	$obj->add_responsive_control(
+		'quantity_selector_space_between',
+		[
+			'type'      => Elementor\Controls_Manager::SLIDER,
+			'label'     => __( 'Space Between', 'elementor' ),
+			'range'     => [
+				'px' => [
+					'min' => 0,
+					'max' => 100,
+				],
+			],
+			'selectors' => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added' => 'gap: {{SIZE}}{{UNIT}};',
+			],
+			'condition' => [
+				'quantity_buttons_position' => [ 'horizontal', 'vertical' ],
+			],
+		]
+	);
+
+	$obj->add_responsive_control(
+		'quantity_selector_wrapper_space_between',
+		[
+			'type'      => Elementor\Controls_Manager::SLIDER,
+			'label'     => __( 'Space Between', 'elementor' ),
+			'range'     => [
+				'px' => [
+					'min' => 0,
+					'max' => 100,
+				],
+			],
+			'selectors' => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder' => 'gap: {{SIZE}}{{UNIT}};',
+			],
+			'condition' => [
+				'quantity_buttons_position!' => [ 'horizontal', 'vertical' ],
+			],
+		]
+	);
+
+	$obj->add_responsive_control(
 		'quantity_selector_size',
 		[
-			'label'     => __( 'Size', 'elementor' ),
 			'type'      => Elementor\Controls_Manager::SLIDER,
+			'label'     => __( 'Icon Size', 'elementor' ),
 			'range'     => [
 				'px' => [
 					'min' => 6,
@@ -333,6 +373,51 @@ function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 			'size_units' => [ 'px', 'em', '%' ],
 			'selectors'  => [
 				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			],
+		]
+	);
+
+	$obj->add_control(
+		'quantity_selector_specific_increase_styles',
+		[
+			'type'  => Elementor\Controls_Manager::SWITCHER,
+			'label' => __( 'Specific Increase Button Styles', 'jet-woo-builder' ),
+		]
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Border::get_type(),
+		[
+			'name'      => 'quantity_selector_increase_border',
+			'selector'  => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control.increase',
+			'condition' => [
+				'quantity_selector_specific_increase_styles' => 'yes',
+			],
+		]
+	);
+
+	$obj->add_control(
+		'quantity_selector_increase_border_radius',
+		[
+			'type'       => Elementor\Controls_Manager::DIMENSIONS,
+			'label'      => __( 'Border Radius', 'jet-woo-builder' ),
+			'size_units' => [ 'px', '%', 'em' ],
+			'selectors'  => [
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control.increase' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+			],
+			'condition'  => [
+				'quantity_selector_specific_increase_styles' => 'yes',
+			],
+		]
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Box_Shadow::get_type(),
+		[
+			'name'      => 'quantity_selector_increase_box_shadow',
+			'selector'  => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control.increase',
+			'condition' => [
+				'quantity_selector_specific_increase_styles' => 'yes',
 			],
 		]
 	);
