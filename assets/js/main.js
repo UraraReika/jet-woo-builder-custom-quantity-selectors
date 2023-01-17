@@ -127,6 +127,7 @@
 									if ( $( e.target ).parent().hasClass( 'increase' ) || $( e.target ).hasClass( 'increase' ) ) {
 										if ( +$maxQuantity && ( +$maxQuantity === +$currentQuantityValue || +$currentQuantityValue > +$maxQuantity ) ) {
 											$quantityBox.val( $maxQuantity );
+											return;
 										} else {
 											$quantityBox.val( parseFloat( $currentQuantityValue ) + parseFloat( $step ) );
 										}
