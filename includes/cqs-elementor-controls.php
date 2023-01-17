@@ -262,21 +262,18 @@ function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 	$obj->add_group_control(
 		Elementor\Group_Control_Background::get_type(),
 		[
-			'name'           => 'quantity_selector_background',
-			'label'          => __( 'Background', 'jet-woo-builder' ),
-			'types'          => [ 'classic', 'gradient' ],
-			'exclude'        => [ 'image' ],
-			'selector'       => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control',
-			'fields_options' => [
-				'background' => [
-					'default' => 'classic',
-				],
-				'color'      => [
-					'global' => [
-						'default' => Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
-					],
-				],
-			],
+			'name'     => 'quantity_selector_background',
+			'types'    => [ 'classic', 'gradient' ],
+			'exclude'  => [ 'image' ],
+			'selector' => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control',
+		]
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Box_Shadow::get_type(),
+		[
+			'name'     => 'quantity_selector_box_shadow',
+			'selector' => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control',
 		]
 	);
 
@@ -304,16 +301,10 @@ function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 	$obj->add_group_control(
 		Elementor\Group_Control_Background::get_type(),
 		[
-			'name'           => 'quantity_selector_hover_background',
-			'label'          => __( 'Background', 'jet-woo-builder' ),
-			'types'          => [ 'classic', 'gradient' ],
-			'exclude'        => [ 'image' ],
-			'selector'       => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:hover, {{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:focus',
-			'fields_options' => [
-				'background' => [
-					'default' => 'classic',
-				],
-			],
+			'name'     => 'quantity_selector_hover_background',
+			'types'    => [ 'classic', 'gradient' ],
+			'exclude'  => [ 'image' ],
+			'selector' => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:hover, {{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:focus',
 		]
 	);
 
@@ -329,6 +320,14 @@ function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:hover' => 'border-color: {{VALUE}};',
 				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:focus' => 'border-color: {{VALUE}};',
 			],
+		]
+	);
+
+	$obj->add_group_control(
+		Elementor\Group_Control_Box_Shadow::get_type(),
+		[
+			'name'     => 'quantity_selector_hover_box_shadow',
+			'selector' => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:hover, {{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control:focus',
 		]
 	);
 
@@ -354,14 +353,6 @@ function cqs_register_custom_quantity_selector_style_controls( $obj ) {
 			'selectors'  => [
 				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 			],
-		]
-	);
-
-	$obj->add_group_control(
-		Elementor\Group_Control_Box_Shadow::get_type(),
-		[
-			'name'     => 'quantity_selector_box_shadow',
-			'selector' => '{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control',
 		]
 	);
 
