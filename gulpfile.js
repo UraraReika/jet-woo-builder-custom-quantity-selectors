@@ -1,5 +1,5 @@
 let rename       = require( 'gulp-rename' ),
-	sass         = require( 'gulp-sass' ),
+	sass         = require('gulp-sass')( require('sass') ),
 	notify       = require( 'gulp-notify' ),
 	autoprefixer = require( 'gulp-autoprefixer' );
 
