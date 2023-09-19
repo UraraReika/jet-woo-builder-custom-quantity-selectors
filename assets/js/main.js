@@ -103,10 +103,10 @@
 								$( this ).on( 'click', function( e ) {
 									e.preventDefault();
 
-									let $currentQuantityValue = $quantityBox.val(),
-										$maxQuantity = $quantityBox.attr( 'max' ),
-										$minQuantity = $quantityBox.attr( 'min' ),
-										$step = $quantityBox.attr( 'step' );
+									let $currentQuantityValue = parseFloat( $quantityBox.val() ),
+										$maxQuantity = parseFloat( $quantityBox.attr( 'max' ) ),
+										$minQuantity = parseFloat( $quantityBox.attr( 'min' ) ),
+										$step = parseFloat( $quantityBox.attr( 'step' ) );
 
 									if ( ! $currentQuantityValue || '' === $currentQuantityValue || 'NaN' === $currentQuantityValue ) {
 										$currentQuantityValue = 0;
@@ -124,18 +124,18 @@
 										$step = 1;
 									}
 
-									if ( $( e.target ).parent().hasClass( 'increase' ) || $( e.target ).hasClass( 'increase' ) ) {
-										if ( +$maxQuantity && ( +$maxQuantity === +$currentQuantityValue || +$currentQuantityValue > +$maxQuantity ) ) {
+									if ( $( e.target ).parents( '.jet-woo-qty-control' ).hasClass( 'increase' ) || $( e.target ).parent().hasClass( 'increase' ) || $( e.target ).hasClass( 'increase' ) ) {
+										if ( $maxQuantity && ( $maxQuantity === $currentQuantityValue || $currentQuantityValue > $maxQuantity ) ) {
 											$quantityBox.val( $maxQuantity );
 											return;
 										} else {
-											$quantityBox.val( parseFloat( $currentQuantityValue ) + parseFloat( $step ) );
+											$quantityBox.val( $currentQuantityValue + $step );
 										}
 									} else {
-										if ( +$minQuantity && ( +$minQuantity === +$currentQuantityValue || +$currentQuantityValue < +$minQuantity ) ) {
+										if ( $minQuantity && ( $minQuantity === $currentQuantityValue || $currentQuantityValue < $minQuantity ) ) {
 											$quantityBox.val( $minQuantity );
 										} else if ( $currentQuantityValue > 0 ) {
-											$quantityBox.val( parseFloat( $currentQuantityValue ) - parseFloat( $step ) );
+											$quantityBox.val( $currentQuantityValue - $step );
 										}
 									}
 
