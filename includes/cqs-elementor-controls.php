@@ -73,7 +73,7 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 				'size' => '30',
 			],
 			'selectors'  => [
-				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder' => 'flex: 0 0 {{SIZE}}{{UNIT}}',
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-controls-holder' => 'flex: 0 1 {{SIZE}}{{UNIT}}',
 			],
 			'condition'  => [
 				'enable_custom_quantity_selector' => 'yes',
@@ -99,7 +99,7 @@ function cqs_register_custom_quantity_selector_content_controls( $obj = null ) {
 				'size' => '20',
 			],
 			'selectors'  => [
-				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control' => 'flex: 0 0 {{SIZE}}{{UNIT}}',
+				'{{WRAPPER}} .jet-woo-quantity-button-added .jet-woo-qty-control' => 'flex: 0 1 {{SIZE}}{{UNIT}}',
 			],
 			'condition'  => [
 				'enable_custom_quantity_selector' => 'yes',
