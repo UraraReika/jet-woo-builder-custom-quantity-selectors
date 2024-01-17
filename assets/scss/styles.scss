@@ -2,6 +2,12 @@
 	display: inline-flex !important;
 	width: 100%;
 
+	@media only screen and (max-width: 768px) {
+		.woocommerce-cart-form & {
+			width: auto;
+		}
+	}
+
 	&.position-vertical {
 		flex-direction: column-reverse;
 	}
